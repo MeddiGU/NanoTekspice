@@ -14,6 +14,11 @@ std::vector<std::string> Parser::getVector()
     return (vector);
 }
 
+std::vector<std::string> Parser::getLinks()
+{
+    return (links);
+}
+
 std::vector<std::string> Parser::getInputs()
 {
     return (inputs);
@@ -39,9 +44,19 @@ std::vector<std::string> Parser::getTrue()
     return (trues);
 }
 
+std::vector<std::string> Parser::getOther()
+{
+    return (others);
+}
+
 std::vector<std::string> Parser::getAll()
 {
     return (alls);
+}
+
+std::vector<std::string> Parser::getTotal()
+{
+    return (total);
 }
 
 int Parser::getTick()

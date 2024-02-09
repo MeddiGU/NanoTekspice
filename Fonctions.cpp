@@ -6,42 +6,46 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <cstring>
+#include <algorithm>
 
 #include "Parser.hpp"
 
-void Parser::display()
+void removeSpaces(char *str)
 {
-    int i = 0;
+    int length = strlen(str);
+    int count = 0;
 
-    std::cout << "tick: " << getTick() << std::endl;
-    std::cout << "input(s):" << std::endl;
-    while (i < getAll().size()) {
-        std::cout << "  " << getAll()[i] << ": ";
-        if (getStatement() == 0) {
-            std::cout << "0" << std::endl;
-        } else if (getStatement() == 1) {
-            std::cout << "1" << std::endl;
-        } else if (getStatement() == 2) {
-            std::cout << "U" << std::endl;
+    for (int i = 0; str[i]; i++) {
+        if (str[i] != ' ') {
+            str[count++] = str[i];
         }
-        i++;
     }
-    i = 0;
-    std::cout << "output(s):\n";
-    while (i < getOutputs().size()) {
-        std::cout << "  " << getOutputs()[i] << ": ";
-        if (getStatement() == 0) {
-            std::cout << "0" << std::endl;
-        } else if (getStatement() == 1) {
-            std::cout << "1" << std::endl;
-        } else if (getStatement() == 2) {
-            std::cout << "U" << std::endl;
-        }
-        i++;
+    str[count] = '\0';
+}
+
+void revstr(char *chaine)
+{
+    int debut = 0;
+    int fin = strlen(chaine) - 1;
+
+    while (debut < fin) {
+        char temp = chaine[debut];
+        chaine[debut] = chaine[fin];
+        chaine[fin] = temp;
+        debut++;
+        fin--;
     }
 }
 
-void Parser::simulate()
+void Parser::display_vector(std::vector<std::string> vec)
 {
-    tick += 1;
+    unsigned int z = 0;
+    while (z < vec.size()) {
+        std::cout << vec[z];
+        if (z + 1 < vec.size()) {
+            std::cout << " / ";
+        }
+        z++;
+    }
+    std::cout << "\n";
 }

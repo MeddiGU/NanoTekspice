@@ -150,6 +150,51 @@ int Parser::vector_into_trues()
     return (0);
 }
 
+int Parser::vector_into_others()
+{
+    unsigned int i = 0;
+    int z = 0, y = 0, t = 0, error = 0;
+    char token[99];
+    char in[99];
+    char *tmp = NULL;
+    char *temp = NULL;
+
+    while (y < vector.size() && t == 0) {
+        if (strcmp(vector[y].c_str(), ".chipsets:\n") == 0) {
+            t = 1;
+        }
+        y++;
+    }
+    i = y;
+
+    while (i < vector.size()) {
+        strcpy(token, getVector()[i].c_str());
+        tmp = strtok(token, " ");
+        if (vector[i][0] == '.') {
+            break;
+        }
+        if (strcmp(tmp, "and") == 0 || strcmp(tmp, "or") == 0 || strcmp(tmp, "xor") == 0 || strcmp(tmp, "not") == 0 || strcmp(tmp, "logger") == 0 ||
+            strcmp(tmp, "4001") == 0 || strcmp(tmp, "4011") == 0 || strcmp(tmp, "4030") == 0 || strcmp(tmp, "4069") == 0 || strcmp(tmp, "4071") == 0 ||
+            strcmp(tmp, "4081") == 0 || strcmp(tmp, "4008") == 0 || strcmp(tmp, "4013") == 0 || strcmp(tmp, "4017") == 0 || strcmp(tmp, "4040") == 0 ||
+            strcmp(tmp, "4094") == 0 || strcmp(tmp, "4512") == 0 || strcmp(tmp, "4514") == 0 || strcmp(tmp, "4801") == 0 || strcmp(tmp, "2716") == 0) {
+            tmp = strtok(NULL, " ");
+            tmp[strlen(tmp) - 1] = '\0';
+            others.push_back(tmp);
+        } else if (strcmp(tmp, "input") == 0 || strcmp(tmp, "output") == 0 || strcmp(tmp, "clock") == 0 || strcmp(tmp, "false") == 0 || strcmp(tmp, "true") == 0) {
+            // empty
+        } else {
+            std::cout << "A components type is unknown '" << tmp << "'" << std::endl;
+            error = 84;
+        }
+        i++;
+    }
+    if (error == 84) {
+        exit (84);
+    }
+    std::sort(others.begin(), others.end());
+    return (0);
+}
+
 int Parser::vector_into_alls()
 {
     alls.insert(alls.end(), inputs.begin(), inputs.end());
@@ -161,15 +206,50 @@ int Parser::vector_into_alls()
     return (0);
 }
 
-void Parser::display_vector(std::vector<std::string> vec)
+int Parser::vector_into_total()
 {
-    unsigned int z = 0;
-    while (z < vec.size()) {
-        std::cout << vec[z];
-        if (z + 1 < vec.size()) {
-            std::cout << " / ";
+    total.insert(total.end(), alls.begin(), alls.end());
+    total.insert(total.end(), outputs.begin(), outputs.end());
+    total.insert(total.end(), others.begin(), others.end());
+
+    std::sort(total.begin(), total.end());
+    return (0);
+}
+
+int Parser::vector_into_links()
+{
+    int dec = 0;
+    int y = 0, t = 0;
+    unsigned int z = 0, x = 0;
+    int valid = 0;
+    char temp[99];
+
+    while (y < vector.size() && t == 0) {
+        if (strcmp(vector[y].c_str(), ".links:\n") == 0) {
+            t = 1;
         }
-        z++;
+        y++;
     }
-    std::cout << "\n";
+    x = y;
+
+    while (x < vector.size()) {
+        while (z < vector[x].size()) {
+            if (vector[x][z] == ':') {
+                while (vector[x][z - dec] != ' ' && z - dec != 0) {
+                    temp[dec] = vector[x][z - dec - 1];
+                    dec++;
+                }
+                temp[dec] = '\0';
+                removeSpaces(temp);
+                revstr(temp);
+                links.push_back(temp);
+            }
+            dec = 0;
+            z++;
+        }
+        z = 0;
+        x++;
+    }
+    std::sort(links.begin(), links.end());
+    return (0);
 }

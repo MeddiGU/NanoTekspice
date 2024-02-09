@@ -27,12 +27,17 @@ int main(int argc, char **argv)
     }
     Parser nan1;
     nan1.path_into_vector(argv[1]);
+    nan1.parsing_error_before();
     nan1.vector_into_inputs();
     nan1.vector_into_outputs();
     nan1.vector_into_clocks();
     nan1.vector_into_falses();
     nan1.vector_into_trues();
+    nan1.vector_into_others();
     nan1.vector_into_alls();
+    nan1.vector_into_total();
+    nan1.vector_into_links();
+    nan1.parsing_error();
 
     //display_vector(nan1.getVector());
     //nan1.display_vector(nan1.getInputs());

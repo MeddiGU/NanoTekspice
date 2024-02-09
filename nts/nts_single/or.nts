@@ -8,6 +8,9 @@
 input in_1
 input in_2
 output out
+ror gate
+or gate
+tor gate
 or gate
 
 .links:

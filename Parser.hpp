@@ -13,6 +13,7 @@
 class Parser {
     protected:
         std::vector<std::string> vector;
+        std::vector<std::string> links;
 
         std::vector<std::string> inputs;
         std::vector<std::string> inputs_temp;
@@ -20,7 +21,9 @@ class Parser {
         std::vector<std::string> clocks;
         std::vector<std::string> trues;
         std::vector<std::string> falses;
+        std::vector<std::string> others;
         std::vector<std::string> alls;
+        std::vector<std::string> total;
 
         int tick;
         enum stat {zero, un, U};
@@ -30,22 +33,30 @@ class Parser {
         char *line;
 
         std::vector<std::string> getVector();
+        std::vector<std::string> getLinks();
         std::vector<std::string> getInputs();
         std::vector<std::string> getOutputs();
         std::vector<std::string> getClock();
         std::vector<std::string> getFalse();
         std::vector<std::string> getTrue();
+        std::vector<std::string> getOther();
         std::vector<std::string> getAll();
+        std::vector<std::string> getTotal();
         int getTick();
         stat getStatement();
 
         int path_into_vector(char *path);
+        void parsing_error_before();
         int vector_into_inputs();
         int vector_into_outputs();
         int vector_into_clocks();
         int vector_into_trues();
         int vector_into_falses();
+        int vector_into_others();
         int vector_into_alls();
+        int vector_into_links();
+        int vector_into_total();
+        void parsing_error();
         void display_vector(std::vector<std::string> vec);
 
         void display();
@@ -55,3 +66,5 @@ class Parser {
         ~Parser();
 
 };
+void removeSpaces(char *str);
+void revstr(char *chaine);
