@@ -24,7 +24,7 @@ class Parser {
         std::vector<std::string> others;
         std::vector<std::string> alls;
         std::vector<std::string> total;
-
+        //creatcomponent(input[i])
         int tick;
         enum stat {zero, un, U};
         stat statement;
