@@ -7,8 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef ORCOMPONENT_HPP_
-#define ORCOMPONENT_HPP_
+#pragma once
 
 class OrComponent : public nts::ACompenent {
     public:
@@ -19,5 +18,3 @@ class OrComponent : public nts::ACompenent {
     protected:
     private:
 };
-
-#endif /* !ORCOMPONENT_HPP_ */

@@ -7,8 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef NOTCOMPONENT_HPP_
-#define NOTCOMPONENT_HPP_
+#pragma once
 
 class NotComponent : public nts::ACompenent {
     public:
@@ -20,5 +19,3 @@ class NotComponent : public nts::ACompenent {
     protected:
     private:
 };
-
-#endif /* !NOTCOMPONENT_HPP_ */

@@ -22,10 +22,9 @@
 #include "include/XorComponent.hpp"
 #include "include/OrComponent.hpp"
 
-#ifndef MAKECOMPONENT_HPP_
-#define MAKECOMPONENT_HPP_
+#pragma once
 
-class MakeComponent : public nts::ACompenent {
+class MakeComponent {
     public:
         MakeComponent();
         ~MakeComponent();
@@ -35,5 +34,3 @@ class MakeComponent : public nts::ACompenent {
     protected:
     private:
 };
-
-#endif /* !MAKECOMPONENT_HPP_ */

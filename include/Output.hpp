@@ -7,8 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef OUTPUT_HPP_
-#define OUTPUT_HPP_
+#pragma once
 
 class Output : public nts::ACompenent {
     public:
@@ -16,4 +15,3 @@ class Output : public nts::ACompenent {
         ~Output();
         nts::Tristate compute(std::size_t pin);
 };
-#endif /* !OUTPUT_HPP_ */

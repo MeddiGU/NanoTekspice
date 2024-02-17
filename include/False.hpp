@@ -8,8 +8,7 @@
 #include "../ACompenent.hpp"
 
 
-#ifndef FALSE_HPP_
-#define FALSE_HPP_
+#pragma once
 
 class False : public nts::ACompenent {
     public:
@@ -17,5 +16,3 @@ class False : public nts::ACompenent {
         ~False();
         nts::Tristate compute(std::size_t pin);
 };
-
-#endif /* !FALSE_HPP_ */

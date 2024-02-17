@@ -158,6 +158,7 @@ int Parser::vector_into_others()
     char in[99];
     char *tmp = NULL;
     char *temp = NULL;
+    char *stock = NULL;
 
     while (y < vector.size() && t == 0) {
         if (strcmp(vector[y].c_str(), ".chipsets:\n") == 0) {
@@ -177,8 +178,10 @@ int Parser::vector_into_others()
             strcmp(tmp, "4001") == 0 || strcmp(tmp, "4011") == 0 || strcmp(tmp, "4030") == 0 || strcmp(tmp, "4069") == 0 || strcmp(tmp, "4071") == 0 ||
             strcmp(tmp, "4081") == 0 || strcmp(tmp, "4008") == 0 || strcmp(tmp, "4013") == 0 || strcmp(tmp, "4017") == 0 || strcmp(tmp, "4040") == 0 ||
             strcmp(tmp, "4094") == 0 || strcmp(tmp, "4512") == 0 || strcmp(tmp, "4514") == 0 || strcmp(tmp, "4801") == 0 || strcmp(tmp, "2716") == 0) {
+            stock = tmp;
             tmp = strtok(NULL, " ");
             tmp[strlen(tmp) - 1] = '\0';
+            others.push_back(stock);
             others.push_back(tmp);
         } else if (strcmp(tmp, "input") == 0 || strcmp(tmp, "output") == 0 || strcmp(tmp, "clock") == 0 || strcmp(tmp, "false") == 0 || strcmp(tmp, "true") == 0) {
             // empty
@@ -191,7 +194,6 @@ int Parser::vector_into_others()
     if (error == 84) {
         exit (84);
     }
-    std::sort(others.begin(), others.end());
     return (0);
 }
 
@@ -213,6 +215,20 @@ int Parser::vector_into_total()
     total.insert(total.end(), others.begin(), others.end());
 
     std::sort(total.begin(), total.end());
+    return (0);
+}
+
+int Parser::vector_into_egal()
+{
+    unsigned int i = 0;
+    line[strlen(line) - 1] = '\0';
+
+    while (i < strlen(line)) {
+        if (line[i] == '=') {
+            egal.push_back(line);
+        }
+        i++;
+    }
     return (0);
 }
 
@@ -252,4 +268,113 @@ int Parser::vector_into_links()
     }
     std::sort(links.begin(), links.end());
     return (0);
+}
+
+void Parser::create_components()
+{
+    MakeComponent make;
+    std::unique_ptr<nts::IComponent> createComponent(const std::string& type);
+
+    // create input coponents
+    if (getInputs().size() > 0) {
+        const auto& inputComponents = getInputs();
+        for (size_t i = 0; i < inputComponents.size(); i += 1) {
+            const std::string& componentName = inputComponents[i];
+
+            std::unique_ptr<nts::IComponent> componentPtr = make.createComponent("input");
+
+            if (componentPtr) {
+                components[componentName] = std::move(componentPtr);
+            } else {
+                std::cout << "Un composent (input) n'a pas réussi a etre créé";
+                exit (84);
+            }
+        }
+    }
+
+    // create output coponents
+    if (getOutputs().size() > 0) {
+        const auto& outputComponents = getOutputs();
+        for (size_t i = 0; i < outputComponents.size(); i += 1) {
+            const std::string& componentName = outputComponents[i];
+
+            std::unique_ptr<nts::IComponent> componentPtr = make.createComponent("output");
+
+            if (componentPtr) {
+                components[componentName] = std::move(componentPtr);
+            } else {
+                std::cout << "Un composent (output) n'a pas réussi a etre créé";
+                exit (84);
+            }
+        }
+    }
+
+    // create clock components
+    if (getClock().size() > 0) {
+        const auto& clockComponents = getClock();
+        for (size_t i = 0; i < clockComponents.size(); i += 1) {
+            const std::string& componentName = clockComponents[i];
+
+            std::unique_ptr<nts::IComponent> componentPtr = make.createComponent("clock");
+
+            if (componentPtr) {
+                components[componentName] = std::move(componentPtr);
+            } else {
+                std::cout << "Un composent (clock) n'a pas réussi a etre créé";
+                exit (84);
+            }
+        }
+    }
+
+    // create false components
+    if (getFalse().size() > 0) {
+        const auto& falseComponents = getFalse();
+        for (size_t i = 0; i < falseComponents.size(); i += 1) {
+            const std::string& componentName = falseComponents[i];
+
+            std::unique_ptr<nts::IComponent> componentPtr = make.createComponent("false");
+
+            if (componentPtr) {
+                components[componentName] = std::move(componentPtr);
+            } else {
+                std::cout << "Un composent (false) n'a pas réussi a etre créé";
+                exit (84);
+            }
+        }
+    }
+
+    // create true components
+    if (getTrue().size() > 0) {
+        const auto& trueComponents = getTrue();
+        for (size_t i = 0; i < trueComponents.size(); i += 1) {
+            const std::string& componentName = trueComponents[i];
+
+            std::unique_ptr<nts::IComponent> componentPtr = make.createComponent("true");
+
+            if (componentPtr) {
+                components[componentName] = std::move(componentPtr);
+            } else {
+                std::cout << "Un composent (false) n'a pas réussi a etre créé";
+                exit (84);
+            }
+        }
+    }
+
+    // create other components
+    if (getOther().size() > 0) {
+        const auto& otherComponents = getOther();
+        for (size_t i = 0; i < otherComponents.size(); i += 2) {
+            const std::string& componentName = otherComponents[i + 1];
+            const std::string& componentType = otherComponents[i];
+
+            std::unique_ptr<nts::IComponent> componentPtr = make.createComponent(componentType);
+
+            if (componentPtr) {
+                components[componentName] = std::move(componentPtr);
+            } else {
+                std::cout << "Un composent (other) n'a pas réussi a etre créé";
+                exit (84);
+            }
+        }
+    }
 }

@@ -30,6 +30,7 @@ output out_11
 input in_12
 input in_13
 4001 gate
+4011 gateau
 
 .links:
 in_01:1 gate:1

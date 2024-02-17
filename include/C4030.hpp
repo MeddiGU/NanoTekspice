@@ -7,8 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef C4030_HPP_
-#define C4030_HPP_
+#pragma once
 
 class C4030 : public nts::ACompenent{
     public:
@@ -17,5 +16,3 @@ class C4030 : public nts::ACompenent{
         nts::Tristate compute(std::size_t pin);
         nts::Tristate xor_gate(nts::Tristate pin1, nts::Tristate pin2);
 };
-
-#endif /* !C4030_HPP_ */

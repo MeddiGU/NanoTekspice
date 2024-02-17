@@ -7,8 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef CLOCK_HPP_
-#define CLOCK_HPP_
+#pragma once
 
 class Clock : public nts::ACompenent {
     public:
@@ -18,5 +17,3 @@ class Clock : public nts::ACompenent {
         protected:
         nts::Tristate _pin;
 };
-
-#endif /* !CLOCK_HPP_ */

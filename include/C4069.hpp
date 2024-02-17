@@ -7,8 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef C4069_HPP_
-#define C4069_HPP_
+#pragma once
 
 class C4069 : public nts::ACompenent{
     public:
@@ -21,5 +20,3 @@ class C4069 : public nts::ACompenent{
     protected:
     private:
 };
-
-#endif /* !C4069_HPP_ */

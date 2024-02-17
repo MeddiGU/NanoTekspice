@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <vector>
+#include "../my.hpp"
 
 class Parser {
     protected:
@@ -24,7 +25,8 @@ class Parser {
         std::vector<std::string> others;
         std::vector<std::string> alls;
         std::vector<std::string> total;
-        //creatcomponent(input[i])
+        std::vector<std::string> egal;
+        std::map<std::string, std::unique_ptr<nts::IComponent>> components;
         int tick;
         enum stat {zero, un, U};
         stat statement;
@@ -42,6 +44,7 @@ class Parser {
         std::vector<std::string> getOther();
         std::vector<std::string> getAll();
         std::vector<std::string> getTotal();
+        std::vector<std::string> getEgal();
         int getTick();
         stat getStatement();
 
@@ -56,8 +59,11 @@ class Parser {
         int vector_into_alls();
         int vector_into_links();
         int vector_into_total();
+        int vector_into_egal();
         void parsing_error();
+        void create_components();
         void display_vector(std::vector<std::string> vec);
+        void display_map();
 
         void display();
         void simulate();

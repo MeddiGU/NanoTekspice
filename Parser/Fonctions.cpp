@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <cstring>
 #include <algorithm>
+#include <map>
 
 #include "Parser.hpp"
 
@@ -48,4 +49,15 @@ void Parser::display_vector(std::vector<std::string> vec)
         z++;
     }
     std::cout << "\n";
+}
+
+void Parser::display_map()
+{
+    int i = 0;
+    for (const auto& pair : components) {
+        const std::string& key = pair.first;
+        const nts::IComponent* componentPtr = pair.second.get();
+        std::cout << "Map élement " << i << ": " << key << std::endl;
+        i++;
+    }
 }

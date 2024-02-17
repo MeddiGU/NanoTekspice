@@ -7,8 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef ANDCOMPONENT_HPP_
-#define ANDCOMPONENT_HPP_
+#pragma once
 
 class AndComponent : public nts::ACompenent {
     public:
@@ -19,6 +18,3 @@ class AndComponent : public nts::ACompenent {
     protected:
     private:
 };
-
-#endif /* !ANDCOMPONENT_HPP_ */
-

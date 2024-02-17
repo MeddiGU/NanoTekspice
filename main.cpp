@@ -1,46 +1,69 @@
-#include <iostream>
-#include "ACompenent.hpp"
-#include "include/C4081.hpp"
-#include "include/C4071.hpp"
-#include "include/True.hpp"
-#include "include/False.hpp"
-#include "include/NotComponent.hpp"
-#include "include/AndComponent.hpp"
-#include "include/OrComponent.hpp"
-#include <memory>
+#include "my.hpp"
 
-int main(void)
+int main(int argc, char **argv)
 {
-    std::unique_ptr<nts::IComponent> gate = std ::make_unique<AndComponent>();
-    std::unique_ptr<nts::IComponent> input1 = std ::make_unique<False>();
-    std::unique_ptr<nts::IComponent> input2 = std ::make_unique<True>();
-    std::unique_ptr<nts::IComponent> inverter = std ::make_unique<NotComponent>();
-    gate->setLink(1, *input1, 1);
-    gate->setLink(2, *input2, 1);
-    inverter->setLink(1, *gate, 3);
-    std::cout << " !( " << input1->compute(1) << " && " << input2->compute(1) << " ) ->" << inverter->compute (2) << std::endl;
-    std::unique_ptr<nts::IComponent> gate2 = std ::make_unique<AndComponent>();
-    std::unique_ptr<nts::IComponent> input12 = std ::make_unique<False>();
-    std::unique_ptr<nts::IComponent> input22 = std ::make_unique<False>();
-    std::unique_ptr<nts::IComponent> inverter2 = std ::make_unique<NotComponent>();
-    gate2->setLink(1, *input12, 1);
-    gate2->setLink(2, *input22, 1);
-    inverter2->setLink(1, *gate2, 3);
-    std::cout << " !( " << input12->compute(1) << " && " << input22->compute(1) << " ) ->" << inverter2->compute (2) << std::endl;
-    std::unique_ptr<nts::IComponent> gate3 = std ::make_unique<AndComponent>();
-    std::unique_ptr<nts::IComponent> input13 = std ::make_unique<True>();
-    std::unique_ptr<nts::IComponent> input23 = std ::make_unique<True>();
-    std::unique_ptr<nts::IComponent> inverter3 = std ::make_unique<NotComponent>();
-    gate3->setLink(1, *input13, 1);
-    gate3->setLink(2, *input23, 1);
-    inverter3->setLink(1, *gate3, 3);
-    std::cout << " !( " << input13->compute(1) << " && " << input23->compute(1) << " ) ->" << inverter3->compute (2) << std::endl;
-    std::unique_ptr<nts::IComponent> gate4 = std ::make_unique<OrComponent>();
-    std::unique_ptr<nts::IComponent> input14 = std ::make_unique<True>();
-    std::unique_ptr<nts::IComponent> input24 = std ::make_unique<True>();
-    std::unique_ptr<nts::IComponent> inverter4 = std ::make_unique<NotComponent>();
-    gate4->setLink(1, *input14, 1);
-    gate4->setLink(2, *input24, 1);
-    inverter4->setLink(1, *gate4, 3);
-    std::cout << " !( " << input14->compute(1) << " || " << input24->compute(1) << " ) ->" << inverter4->compute (2) << std::endl;
+    if (argc == 1) {
+        std::cout << "./Parser (fichier.nts)" << std::endl;
+        return (84);
+    }
+    Parser nan1;
+    nan1.path_into_vector(argv[1]);
+    nan1.parsing_error_before();
+    nan1.vector_into_inputs();
+    nan1.vector_into_outputs();
+    nan1.vector_into_clocks();
+    nan1.vector_into_falses();
+    nan1.vector_into_trues();
+    nan1.vector_into_others();
+    nan1.vector_into_alls();
+    nan1.vector_into_total();
+    nan1.vector_into_links();
+    nan1.create_components();
+    nan1.parsing_error();
+    size_t len = 0;
+
+    while (1) {
+        write(0, "> ", 3);
+        if (getline(&nan1.line, &len, stdin) == -1) {
+            exit (0);
+        }
+        if (strcmp(nan1.line, "display\n") == 0) {
+            nan1.display();
+        }
+        if (strcmp(nan1.line, "exit\n") == 0) {
+            exit(0);
+        }
+        if (strcmp(nan1.line, "simulate\n") == 0) {
+            nan1.simulate();
+        }
+        if (strcmp(nan1.line, "input\n") == 0) {
+            nan1.display_vector(nan1.getInputs());
+        }
+        if (strcmp(nan1.line, "output\n") == 0) {
+            nan1.display_vector(nan1.getOutputs());
+        }
+        if (strcmp(nan1.line, "clock\n") == 0) {
+            nan1.display_vector(nan1.getClock());
+        }
+        if (strcmp(nan1.line, "true\n") == 0) {
+            nan1.display_vector(nan1.getTrue());
+        }
+        if (strcmp(nan1.line, "false\n") == 0) {
+            nan1.display_vector(nan1.getFalse());
+        }
+        if (strcmp(nan1.line, "all\n") == 0) {
+            nan1.display_vector(nan1.getAll());
+        }
+        if (strcmp(nan1.line, "others\n") == 0) {
+            nan1.display_vector(nan1.getOther());
+        }
+        if (strcmp(nan1.line, "egal\n") == 0) {
+            nan1.display_vector(nan1.getEgal());
+        }
+        if (strcmp(nan1.line, "map\n") == 0) {
+            nan1.display_map();
+        }
+        nan1.vector_into_egal();
+    }
+    return (0);
 }

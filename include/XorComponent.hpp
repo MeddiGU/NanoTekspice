@@ -7,8 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef XORCOMPONENT_HPP_
-#define XORCOMPONENT_HPP_
+#pragma once
 
 class XorComponent : public nts::ACompenent {
     public:
@@ -19,6 +18,3 @@ class XorComponent : public nts::ACompenent {
     protected:
     private:
 };
-
-#endif /* !XORCOMPONENT_HPP_ */
-

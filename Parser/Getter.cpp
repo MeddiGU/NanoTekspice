@@ -8,6 +8,7 @@
 #include <cstring>
 
 #include "Parser.hpp"
+#include "../my.hpp"
 
 std::vector<std::string> Parser::getVector()
 {
@@ -57,6 +58,11 @@ std::vector<std::string> Parser::getAll()
 std::vector<std::string> Parser::getTotal()
 {
     return (total);
+}
+
+std::vector<std::string> Parser::getEgal()
+{
+    return (egal);
 }
 
 int Parser::getTick()

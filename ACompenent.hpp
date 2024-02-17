@@ -10,8 +10,7 @@
 #include <map>
 #include <memory>
 
-#ifndef ACOMPENENT_HPP_
-#define ACOMPENENT_HPP_
+#pragma once
 
 namespace nts {
 
@@ -48,5 +47,3 @@ namespace nts {
             std::map<std::size_t, std::pair<IComponent *, std::size_t>> _links;
     };
 }
-
-#endif /* !ACOMPENENT_HPP_ */

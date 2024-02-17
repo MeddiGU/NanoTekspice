@@ -6,6 +6,7 @@
 */
 
 #include "MakeComponent.hpp"
+#include "Parser/Parser.hpp"
 
 MakeComponent::MakeComponent()
 {
@@ -15,7 +16,7 @@ MakeComponent::~MakeComponent()
 {
 }
 
-std::unique_ptr<nts::IComponent> createComponent(const std::string &type)
+std::unique_ptr<nts::IComponent> MakeComponent::createComponent(const std::string &type)
 {
     if (type == "4001")
         return std::make_unique<C4001>();

@@ -7,9 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef INPUT_HPP_
-#define INPUT_HPP_
-
+#pragma once
 
 class Input : public nts::ACompenent {
     public:
@@ -19,6 +17,3 @@ class Input : public nts::ACompenent {
         protected:
         nts::Tristate _pin;
 };
-
-
-#endif /* !INPUT_HPP_ */

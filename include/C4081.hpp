@@ -7,8 +7,7 @@
 
 #include "../ACompenent.hpp"
 
-#ifndef C4081_HPP_
-#define C4081_HPP_
+#pragma once
 
 class C4081 : public nts::ACompenent {
     public:
@@ -17,5 +16,3 @@ class C4081 : public nts::ACompenent {
         nts::Tristate compute(std::size_t pin);
         nts::Tristate and_gate(nts::Tristate pin1, nts::Tristate pin2);
 };
-
-#endif /* !C4081_HPP_ */
