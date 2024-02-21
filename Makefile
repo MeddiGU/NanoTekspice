@@ -5,7 +5,7 @@
 ## task01
 ##
 
-EXEC   =    NanoTekSpice
+EXEC   =    nanotekspice
 
 all:   $(EXEC)
 
