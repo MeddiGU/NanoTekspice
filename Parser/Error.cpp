@@ -42,11 +42,15 @@ void Parser::parsing_error()
     int error = 0;
     unsigned int z = 0, x = 0, nb = 0;
     char str[99];
+    display_vector(total);
+    display_vector(links);
+    int i = 0;
     for (const auto& element : links) {
-        if (std::find(total.begin(), total.end(), element) == total.end()) {
+        if (std::find(total.begin(), total.end(), element) == total.end() && i%2 == 0) {
             std::cout << "A components name is unknown '" << element << "'" << std::endl;
             error = 84;
         }
+        i++;
     }
 
     while (z < total.size()) {

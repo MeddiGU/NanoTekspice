@@ -14,8 +14,7 @@ class NotComponent : public nts::ACompenent {
         NotComponent();
         ~NotComponent();
         nts::Tristate compute(std::size_t pin);
-
-
-    protected:
-    private:
+        nts::Tristate getValue();
+        protected:
+        nts::Tristate _pin = nts::Tristate::Undefined;
 };

@@ -32,3 +32,8 @@ nts::Tristate C4069::compute(std::size_t pin)
         return _links[pin].first->compute(_links[pin].second);
     return nts::Tristate::Undefined;
 }
+
+nts::Tristate C4069::getValue()
+{
+    return(_pin);
+}

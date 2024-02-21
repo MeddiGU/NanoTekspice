@@ -15,4 +15,7 @@ class False : public nts::ACompenent {
         False();
         ~False();
         nts::Tristate compute(std::size_t pin);
+        nts::Tristate getValue();
+        protected:
+        nts::Tristate _pin = nts::Tristate::False;
 };

@@ -38,3 +38,8 @@ nts::Tristate C4081::compute(std::size_t pin)
         return and_gate(_links[12].first->compute(_links[12].second), _links[13].first->compute(_links[13].second));
     return nts::Tristate::Undefined;
 }
+
+nts::Tristate C4081::getValue()
+{
+    return(_pin);
+}

@@ -69,8 +69,3 @@ int Parser::getTick()
 {
     return (tick);
 }
-
-Parser::stat Parser::getStatement()
-{
-    return (statement);
-}

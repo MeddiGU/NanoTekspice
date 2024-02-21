@@ -15,4 +15,7 @@ class C4030 : public nts::ACompenent{
         ~C4030();
         nts::Tristate compute(std::size_t pin);
         nts::Tristate xor_gate(nts::Tristate pin1, nts::Tristate pin2);
+        nts::Tristate getValue();
+        protected:
+        nts::Tristate _pin = nts::Tristate::Undefined;
 };

@@ -28,8 +28,6 @@ class Parser {
         std::vector<std::string> egal;
         std::map<std::string, std::unique_ptr<nts::IComponent>> components;
         int tick;
-        enum stat {zero, un, U};
-        stat statement;
 
     public:
         char *line;
@@ -46,7 +44,6 @@ class Parser {
         std::vector<std::string> getTotal();
         std::vector<std::string> getEgal();
         int getTick();
-        stat getStatement();
 
         int path_into_vector(char *path);
         void parsing_error_before();
@@ -62,6 +59,7 @@ class Parser {
         int vector_into_egal();
         void parsing_error();
         void create_components();
+        void set_links();
         void display_vector(std::vector<std::string> vec);
         void display_map();
 

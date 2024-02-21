@@ -14,7 +14,7 @@ class XorComponent : public nts::ACompenent {
         XorComponent();
         ~XorComponent();
         nts::Tristate compute(std::size_t pin);
-
-    protected:
-    private:
+        nts::Tristate getValue();
+        protected:
+        nts::Tristate _pin = nts::Tristate::Undefined;
 };

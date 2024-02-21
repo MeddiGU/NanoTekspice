@@ -12,7 +12,6 @@
 Parser::Parser()
 {
     tick = 0;
-    statement = stat::U;
 }
 
 Parser::~Parser()

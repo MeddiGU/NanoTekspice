@@ -24,5 +24,18 @@ nts::Tristate Clock::compute(std::size_t pin)
     return _pin;
 }
 
+nts::Tristate Clock::setValue(int value, int tick)
+{
+    if (tick%2 == 0) {
+        _pin = nts::Tristate::False;
+    }
+    if (tick%2 == 1) {
+        _pin = nts::Tristate::True;
+    }
+    return(_pin);
+}
 
-
+nts::Tristate Clock::getValue()
+{
+    return(_pin);
+}

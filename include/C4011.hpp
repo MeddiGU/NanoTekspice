@@ -15,4 +15,7 @@ class C4011 : public nts::ACompenent {
             ~C4011();
             nts::Tristate compute(std::size_t pin);
             nts::Tristate nand_gate(nts::Tristate pin1, nts::Tristate pin2);
+            nts::Tristate getValue();
+            protected:
+            nts::Tristate _pin = nts::Tristate::Undefined;
 };

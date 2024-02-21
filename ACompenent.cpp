@@ -23,3 +23,13 @@ void nts::ACompenent::setLink(std::size_t pin, nts::IComponent &other, std::size
 {
     _links[pin] = std::make_pair(&other, otherPin);
 }
+
+nts::Tristate nts::ACompenent::setValue(int value, int tick)
+{
+    return (_pin);
+}
+
+nts::Tristate nts::ACompenent::getValue()
+{
+    return (_pin);
+}

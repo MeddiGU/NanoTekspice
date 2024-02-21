@@ -34,3 +34,8 @@ nts::Tristate XorComponent::compute(std::size_t pin)
     }
     return nts::Tristate::Undefined;
 }
+
+nts::Tristate XorComponent::getValue()
+{
+    return(_pin);
+}

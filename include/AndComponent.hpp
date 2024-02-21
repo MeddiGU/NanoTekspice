@@ -14,7 +14,8 @@ class AndComponent : public nts::ACompenent {
         AndComponent();
         ~AndComponent();
         nts::Tristate compute(std::size_t pin);
-
-    protected:
-    private:
+        nts::Tristate and_gate(nts::Tristate a, nts::Tristate b);
+        nts::Tristate getValue();
+        protected:
+        nts::Tristate _pin = nts::Tristate::Undefined;
 };

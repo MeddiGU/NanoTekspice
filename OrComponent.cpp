@@ -28,3 +28,8 @@ nts::Tristate OrComponent::compute(std::size_t pin)
     }
     return nts::Tristate::Undefined;
 }
+
+nts::Tristate OrComponent::getValue()
+{
+    return(_pin);
+}

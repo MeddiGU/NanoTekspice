@@ -14,6 +14,8 @@ class Input : public nts::ACompenent {
         Input();
         ~Input();
         nts::Tristate compute(std::size_t pin);
+        nts::Tristate setValue(int value, int tick);
+        nts::Tristate getValue();
         protected:
-        nts::Tristate _pin;
+        nts::Tristate _pin = nts::Tristate::Undefined;
 };

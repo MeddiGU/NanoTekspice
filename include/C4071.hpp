@@ -15,4 +15,7 @@ class C4071 : public nts::ACompenent {
         ~C4071();
         nts::Tristate compute(std::size_t pin);
         nts::Tristate or_gate(nts::Tristate a, nts::Tristate b);
+        nts::Tristate getValue();
+        protected:
+        nts::Tristate _pin = nts::Tristate::Undefined;
 };

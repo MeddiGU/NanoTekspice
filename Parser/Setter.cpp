@@ -240,6 +240,7 @@ int Parser::vector_into_links()
     int valid = 0;
     char temp[99];
 
+    // skip tant que .links n'es pas trouvé
     while (y < vector.size() && t == 0) {
         if (strcmp(vector[y].c_str(), ".links:\n") == 0) {
             t = 1;
@@ -248,9 +249,17 @@ int Parser::vector_into_links()
     }
     x = y;
 
+    int h = 0;
+    char pin[99];
     while (x < vector.size()) {
         while (z < vector[x].size()) {
             if (vector[x][z] == ':') {
+                h = 0;
+                while (vector[x][z + h + 1] != ' ' && vector[x][z + h + 1] != '\0' && vector[x][z + h + 1] != '\n') {
+                    pin[h] = vector[x][z + h + 1];
+                    h++;
+                }
+                pin[h] = '\0';
                 while (vector[x][z - dec] != ' ' && z - dec != 0) {
                     temp[dec] = vector[x][z - dec - 1];
                     dec++;
@@ -259,6 +268,7 @@ int Parser::vector_into_links()
                 removeSpaces(temp);
                 revstr(temp);
                 links.push_back(temp);
+                links.push_back(pin);
             }
             dec = 0;
             z++;
@@ -266,7 +276,6 @@ int Parser::vector_into_links()
         z = 0;
         x++;
     }
-    std::sort(links.begin(), links.end());
     return (0);
 }
 
@@ -377,4 +386,8 @@ void Parser::create_components()
             }
         }
     }
+}
+
+void Parser::set_links()
+{
 }

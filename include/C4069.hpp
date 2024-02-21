@@ -15,8 +15,7 @@ class C4069 : public nts::ACompenent{
         ~C4069();
         nts::Tristate compute(std::size_t pin);
         nts::Tristate inverter_gate(nts::Tristate pin);
-
-
-    protected:
-    private:
+        nts::Tristate getValue();
+        protected:
+        nts::Tristate _pin = nts::Tristate::Undefined;
 };

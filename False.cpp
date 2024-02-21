@@ -19,3 +19,8 @@ nts::Tristate False::compute(std::size_t pin)
 {
     return nts::Tristate::False;
 }
+
+nts::Tristate False::getValue()
+{
+    return(_pin);
+}

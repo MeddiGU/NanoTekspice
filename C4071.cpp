@@ -37,3 +37,8 @@ nts::Tristate C4071::compute(std::size_t pin)
         return or_gate(_links[12].first->compute(_links[12].second), _links[13].first->compute(_links[13].second));
     return nts::Tristate::Undefined;
 }
+
+nts::Tristate C4071::getValue()
+{
+    return(_pin);
+}

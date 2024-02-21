@@ -26,3 +26,8 @@ nts::Tristate NotComponent::compute(std::size_t pin)
     }
     return nts::Tristate::Undefined;
 }
+
+nts::Tristate NotComponent::getValue()
+{
+    return(_pin);
+}

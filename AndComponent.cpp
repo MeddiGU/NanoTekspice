@@ -15,6 +15,18 @@ AndComponent::~AndComponent()
 {
 }
 
+nts::Tristate AndComponent::and_gate(nts::Tristate a, nts::Tristate b)
+{
+    if (a == nts::Tristate::True && b == nts::Tristate::True) {
+        return nts::Tristate::True;
+    } else if (a == nts::Tristate::Undefined || b == nts::Tristate::Undefined) {
+        return nts::Tristate::Undefined;
+    } else {
+        return nts::Tristate::False;
+    }
+}
+
+
 nts::Tristate AndComponent::compute(std::size_t pin)
 {
     if (pin == 3) {
@@ -25,4 +37,9 @@ nts::Tristate AndComponent::compute(std::size_t pin)
             return nts::False;
     }
     return nts::Undefined;
+}
+
+nts::Tristate AndComponent::getValue()
+{
+    return(_pin);
 }

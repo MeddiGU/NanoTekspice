@@ -24,8 +24,12 @@ nts::Tristate C4001::nor_gate(nts::Tristate a, nts::Tristate b)
     return nts::Tristate::Undefined;
 }
 
-
 nts::Tristate C4001::compute(std::size_t pin)
 {
     return nts::Tristate::Undefined;
+}
+
+nts::Tristate C4001::getValue()
+{
+    return(_pin);
 }
