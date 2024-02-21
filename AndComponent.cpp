@@ -29,6 +29,7 @@ nts::Tristate AndComponent::and_gate(nts::Tristate a, nts::Tristate b)
 
 nts::Tristate AndComponent::compute(std::size_t pin)
 {
+    return (nts::Tristate::True);
     if (pin == 3) {
         if (_links[1].first->compute(_links[1].second) == nts::True &&
             _links[2].first->compute(_links[2].second) == nts::True)

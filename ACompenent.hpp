@@ -28,6 +28,8 @@ namespace nts {
             virtual void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) = 0;
             virtual nts::Tristate setValue(int value, int tick) = 0;
             virtual nts::Tristate getValue() = 0;
+            virtual std::map<std::size_t, std::pair<IComponent *, std::size_t>> getLink() = 0;
+            std::map<std::size_t, std::pair<IComponent *, std::size_t>> _links;
             nts::Tristate _pin = nts::Tristate::Undefined;
     };
 
@@ -40,8 +42,7 @@ namespace nts {
             std::unique_ptr<nts::IComponent> createComponent(const std::string &type);
             nts::Tristate setValue(int value, int tick);
             nts::Tristate getValue();
+            std::map<std::size_t, std::pair<IComponent *, std::size_t>> getLink();
             nts::Tristate _pin;
-        protected:
-            std::map<std::size_t, std::pair<IComponent *, std::size_t>> _links;
     };
 }

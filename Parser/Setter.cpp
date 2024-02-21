@@ -390,4 +390,23 @@ void Parser::create_components()
 
 void Parser::set_links()
 {
+    unsigned int z = 0;
+    while (z + 3 < links.size()) {
+        std::string gate = links[z + 2];
+        std::size_t pineTaSoeur = atoi(links[z + 1].c_str());
+        nts::IComponent &componentPtr = *components.find(gate)->second;
+        std::size_t componentpineTaSoeur = atoi(links[z + 3].c_str());
+        //std::cout << links[z] << " : " << links[z + 1] << " : " << links[z + 2] << " : " << links[z + 3] << " : " << std::endl;
+        //std::cout << gate << " : " << pineTaSoeur << " : " << components.find(gate)->first << " : " << componentpineTaSoeur << std::endl;
+        components[links[z]]->setLink(pineTaSoeur, componentPtr, componentpineTaSoeur);
+
+        std::string comp = links[z];
+        nts::IComponent &gatePtr = *components.find(comp)->second;
+        components[links[z + 2]]->setLink(componentpineTaSoeur, componentPtr, pineTaSoeur);
+        z += 4;
+    }
+
+    // auto link = components["in_2"]->getLink()[1];
+    // // Accéder aux éléments de la paire
+    // std::cout << link.first << " / " << link.second;
 }

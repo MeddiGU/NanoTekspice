@@ -22,6 +22,7 @@ int main(int argc, char **argv)
     nan1.parsing_error();
     size_t len = 0;
 
+    nan1.set_links();
     while (1) {
         write(0, "> ", 3);
         if (getline(&nan1.line, &len, stdin) == -1) {

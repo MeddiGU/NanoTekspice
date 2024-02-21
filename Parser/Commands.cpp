@@ -16,29 +16,27 @@ void Parser::display()
 
     std::cout << "tick: " << getTick() << std::endl;
     std::cout << "input(s):" << std::endl;
-    while (i < getAll().size()) {
-        std::cout << "  " << getAll()[i] << ": ";
-        if (components[getAll()[i]]->getValue() == nts::Tristate::False) {
-            std::cout << "0" << std::endl;
-        } else if (components[getAll()[i]]->getValue() == nts::Tristate::True) {
-            std::cout << "1" << std::endl;
-        } else if (components[getAll()[i]]->getValue() == nts::Tristate::Undefined) {
-            std::cout << "U" << std::endl;
-        }
-        i++;
+    for (auto &i : inputs) {
+        std::cout << "  " << i << ": " << components[i]->compute(1) << std::endl;
+        // if (components[getOutputs()[i]]->getValue() == nts::Tristate::False) {
+        //     std::cout << "0" << std::endl;
+        // } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::True) {
+        //     std::cout << "1" << std::endl;
+        // } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::Undefined) {
+        //     std::cout << "U" << std::endl;
+        // }
     }
     i = 0;
     std::cout << "output(s):\n";
-    while (i < getOutputs().size()) {
-        std::cout << "  " << getOutputs()[i] << ": ";
-        if (components[getOutputs()[i]]->getValue() == nts::Tristate::False) {
-            std::cout << "0" << std::endl;
-        } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::True) {
-            std::cout << "1" << std::endl;
-        } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::Undefined) {
-            std::cout << "U" << std::endl;
-        }
-        i++;
+    for (auto &i : outputs) {
+        std::cout << "  " << i << ": " << components[i]->compute(1) << std::endl;
+        // if (components[getOutputs()[i]]->getValue() == nts::Tristate::False) {
+        //     std::cout << "0" << std::endl;
+        // } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::True) {
+        //     std::cout << "1" << std::endl;
+        // } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::Undefined) {
+        //     std::cout << "U" << std::endl;
+        // }
     }
 }
 
@@ -86,12 +84,18 @@ void Parser::simulate()
     z = 0;
     size_t pin = 0;
     // compute the output to obtain the result of the gate in the output
-    // while (z < outputs.size()) {
-    //     std::cout << outputs[z] << std::endl;
-    //     pin = atoi(links[z].c_str());
-    //     components[outputs[z]]->compute(pin);
-    //     z++;
-    // }
+
+    while (z < inputs.size()) {
+        components[inputs[z]]->compute(1);
+        std::cout << "input: " << inputs[z] << " value: " << components[inputs[z]]->compute(1) << std::endl;
+        z++;
+    }
+    z = 1;
+    while (z < outputs.size()) {
+        components[outputs[z]]->compute(1);
+        std::cout << "output: " << outputs[z] << " value: " << components[outputs[z]]->compute(1) << std::endl;
+        z++;
+    }
 
     // clear the egal vector
     egal.clear();
