@@ -6,8 +6,13 @@ int main(int argc, char **argv)
         std::cout << "./Parser (fichier.nts)" << std::endl;
         return (84);
     }
+    if (argv[1][strlen(argv[1])- 1] != 's' && argv[1][strlen(argv[1])- 2] != 't' && argv[1][strlen(argv[1])- 3] != 'n') {
+        std::cout << "Wrong extention, expected '.nts'" << std::endl ;
+        return (84);
+    }
     Parser nan1;
     nan1.path_into_vector(argv[1]);
+    nan1.path_into_skip(argv[1]);
     nan1.parsing_error_before();
     nan1.vector_into_inputs();
     nan1.vector_into_outputs();

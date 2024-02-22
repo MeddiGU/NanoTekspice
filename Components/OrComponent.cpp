@@ -5,7 +5,7 @@
 ** OrComponent
 */
 
-#include "include/OrComponent.hpp"
+#include "../include/OrComponent.hpp"
 
 OrComponent::OrComponent()
 {

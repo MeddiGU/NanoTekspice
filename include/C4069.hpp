@@ -5,7 +5,7 @@
 ** C4069
 */
 
-#include "../ACompenent.hpp"
+#include "ACompenent.hpp"
 
 #pragma once
 

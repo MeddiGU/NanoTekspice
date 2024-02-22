@@ -5,7 +5,7 @@
 ** AndComponent
 */
 
-#include "../ACompenent.hpp"
+#include "ACompenent.hpp"
 
 #pragma once
 

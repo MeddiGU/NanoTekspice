@@ -13,25 +13,25 @@
 void Parser::parsing_error_before()
 {
     unsigned int z = 0, x = 0;
-    int error = 0;
+    int error = 0, error_chipset = 0, error_links = 0;
+    z = 0;
     while (z < vector.size()) {
-        while (x < vector[z].size()) {
-            if (vector[z][x] == ' ' || vector[z][x] == '.') {
-                error = 84;
-            }
-            x++;
+        //printf("%s / ", vector[z].c_str());
+        if (strcmp(vector[z].c_str(), ".chipsets:\n") == 0) {
+            error_chipset = 84;
         }
-        if (error == 0) {
-            error = 84;
-            break;
+        if (strcmp(vector[z].c_str(), ".links:\n") == 0) {
+            error_links = 84;
         }
-        error = 0;
-        x = 0;
         z++;
     }
-    
-    if (error == 84) {
-        std::cout << "Invalid Syntax" << std::endl;
+    if (error_chipset == 0) {
+        std::cout << "No .chipsets" << std::endl;
+    }
+    if (error_links == 0) {
+        std::cout << "No .links" << std::endl;
+    }
+    if (skip == 84 || error_chipset == 0 || error_links == 0) {
         exit (84);
     }
     return;

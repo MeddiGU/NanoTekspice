@@ -43,6 +43,55 @@ int Parser::path_into_vector(char *path)
     return (0);
 }
 
+int Parser::path_into_skip(char *path)
+{
+    char buff;
+    char stock[999];
+    std::vector<std::string> tempo;
+    std::ifstream inFile;
+    inFile.open(path);
+    int i = 0;
+    if (inFile.fail()) {
+        std::cerr << "Parser: " << path << ": No such file or directory" << std::endl;
+        exit (84);
+    } else {
+        buff = inFile.get();
+        while (inFile.good()) {
+            stock[i] = buff;
+            if (buff == '\n') {
+                stock[i + 1] = '\0';
+                tempo.push_back(stock);
+                stock[0] = '\0';
+                i = -1;
+            }
+            buff = inFile.get();
+            i++;
+        }
+    }
+
+    unsigned int z = 0, y = 0;
+    int error = 0;
+    while (z < tempo.size()) {
+        while (tempo[z][y] != '\0') {
+            if (tempo[z][y] == '.' || tempo[z][y] == ' ' || tempo[z][y] == '#') {
+                error = 84;
+            }
+            y++;
+        }
+        if (strcmp(tempo[z].c_str(), "\n") == 0) {
+            error = 84;
+        }
+        if (error == 0) {
+            skip = 84;
+            std::cout << "Invalid Syntax : line " << z + 1 << std::endl;
+        }
+        error = 0;
+        y = 0;
+        z++;
+    }
+    return (0);
+}
+
 int Parser::vector_into_inputs()
 {
     unsigned int i = 0;
@@ -402,7 +451,7 @@ void Parser::set_links()
 
         std::string comp = links[z];
         nts::IComponent &gatePtr = *components.find(comp)->second;
-        components[links[z + 2]]->setLink(componentpineTaSoeur, componentPtr, pineTaSoeur);
+        components[links[z + 2]]->setLink(componentpineTaSoeur, gatePtr, pineTaSoeur);
         z += 4;
     }
 

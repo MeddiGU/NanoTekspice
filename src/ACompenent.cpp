@@ -5,7 +5,7 @@
 ** ACompenent
 */
 
-#include "ACompenent.hpp"
+#include "../include/ACompenent.hpp"
 
 nts::ACompenent::ACompenent()
 {
@@ -27,7 +27,14 @@ void nts::ACompenent::setLink(std::size_t pin, nts::IComponent &other, std::size
 
 nts::Tristate nts::ACompenent::setValue(int value, int tick)
 {
-    return (_pin);
+    if (value == 1) {
+        _pin = nts::Tristate::True;
+    } else if (value == 0) {
+        _pin = nts::Tristate::False;
+    } else {
+        _pin = nts::Tristate::Undefined;
+    }
+    return(_pin);
 }
 
 nts::Tristate nts::ACompenent::getValue()

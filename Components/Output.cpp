@@ -5,7 +5,7 @@
 ** Output
 */
 
-#include "include/Output.hpp"
+#include "../include/Output.hpp"
 
 Output::Output()
 {

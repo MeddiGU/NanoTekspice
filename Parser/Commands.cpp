@@ -16,27 +16,21 @@ void Parser::display()
 
     std::cout << "tick: " << getTick() << std::endl;
     std::cout << "input(s):" << std::endl;
-    for (auto &i : inputs) {
-        std::cout << "  " << i << ": " << components[i]->compute(1) << std::endl;
-        // if (components[getOutputs()[i]]->getValue() == nts::Tristate::False) {
-        //     std::cout << "0" << std::endl;
-        // } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::True) {
-        //     std::cout << "1" << std::endl;
-        // } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::Undefined) {
-        //     std::cout << "U" << std::endl;
-        // }
+    for (auto &i : alls) {
+        if (components[i]->compute(1) == nts::Tristate::Undefined) {
+            std::cout << "  " << i << ": " << "U" << std::endl;
+        } else {
+            std::cout << "  " << i << ": " << components[i]->compute(1) << std::endl;
+        }
     }
     i = 0;
     std::cout << "output(s):\n";
     for (auto &i : outputs) {
-        std::cout << "  " << i << ": " << components[i]->compute(1) << std::endl;
-        // if (components[getOutputs()[i]]->getValue() == nts::Tristate::False) {
-        //     std::cout << "0" << std::endl;
-        // } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::True) {
-        //     std::cout << "1" << std::endl;
-        // } else if (components[getOutputs()[i]]->getValue() == nts::Tristate::Undefined) {
-        //     std::cout << "U" << std::endl;
-        // }
+        if (components[i]->compute(1) == nts::Tristate::Undefined) {
+            std::cout << "  " << i << ": " << "U" << std::endl;
+        } else {
+            std::cout << "  " << i << ": " << components[i]->compute(1) << std::endl;
+        }
     }
 }
 
@@ -87,13 +81,19 @@ void Parser::simulate()
 
     while (z < inputs.size()) {
         components[inputs[z]]->compute(1);
-        std::cout << "input: " << inputs[z] << " value: " << components[inputs[z]]->compute(1) << std::endl;
+        //std::cout << "input: " << inputs[z] << " value: " << components[inputs[z]]->compute(1) << std::endl;
+        z++;
+    }
+    z = 0;
+    while (z < clocks.size()) {
+        components[clocks[z]]->compute(1);
+        //std::cout << "input: " << inputs[z] << " value: " << components[inputs[z]]->compute(1) << std::endl;
         z++;
     }
     z = 1;
     while (z < outputs.size()) {
         components[outputs[z]]->compute(1);
-        std::cout << "output: " << outputs[z] << " value: " << components[outputs[z]]->compute(1) << std::endl;
+        //std::cout << "output: " << outputs[z] << " value: " << components[outputs[z]]->compute(1) << std::endl;
         z++;
     }
 

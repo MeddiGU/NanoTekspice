@@ -5,7 +5,7 @@
 ** Clock
 */
 
-#include "include/Clock.hpp"
+#include "../include/Clock.hpp"
 
 Clock::Clock()
 {
@@ -17,7 +17,9 @@ Clock::~Clock()
 
 nts::Tristate Clock::compute(std::size_t pin)
 {
-    if (_pin == nts::Tristate::True)
+    if (_pin == nts::Tristate::Undefined)
+        _pin = nts::Tristate::Undefined;
+    else if (_pin == nts::Tristate::True)
         _pin = nts::Tristate::False;
     else
         _pin = nts::Tristate::True;

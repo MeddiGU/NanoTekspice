@@ -9,7 +9,7 @@
 
 #include <iostream>
 #include <vector>
-#include "../my.hpp"
+#include "../src/my.hpp"
 
 class Parser {
     protected:
@@ -31,6 +31,7 @@ class Parser {
 
     public:
         char *line;
+        int skip;
 
         std::vector<std::string> getVector();
         std::vector<std::string> getLinks();
@@ -46,6 +47,7 @@ class Parser {
         int getTick();
 
         int path_into_vector(char *path);
+        int path_into_skip(char *path);
         void parsing_error_before();
         int vector_into_inputs();
         int vector_into_outputs();

@@ -8,7 +8,7 @@
 #include <cstring>
 
 #include "Parser.hpp"
-#include "../my.hpp"
+#include "../src/my.hpp"
 
 std::vector<std::string> Parser::getVector()
 {

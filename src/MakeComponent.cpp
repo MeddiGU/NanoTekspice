@@ -5,8 +5,8 @@
 ** MakeComponent
 */
 
-#include "MakeComponent.hpp"
-#include "Parser/Parser.hpp"
+#include "../include/MakeComponent.hpp"
+#include "../Parser/Parser.hpp"
 
 MakeComponent::MakeComponent()
 {

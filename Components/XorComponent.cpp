@@ -5,7 +5,7 @@
 ** XorComponent
 */
 
-#include "include/XorComponent.hpp"
+#include "../include/XorComponent.hpp"
 
 XorComponent::XorComponent()
 {

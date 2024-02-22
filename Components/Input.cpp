@@ -5,7 +5,7 @@
 ** Input
 */
 
-#include "include/Input.hpp"
+#include "../include/Input.hpp"
 
 Input::Input()
 {
@@ -17,7 +17,7 @@ Input::~Input()
 
 nts::Tristate Input::compute(std::size_t pin)
 {
-    return _pin;
+    return (_pin);
 }
 
 nts::Tristate Input::setValue(int value, int tick)
