@@ -19,10 +19,24 @@ nts::Tristate AndComponent::and_gate(nts::Tristate a, nts::Tristate b)
 {
     if (a == nts::Tristate::True && b == nts::Tristate::True) {
         return nts::Tristate::True;
-    } else if (a == nts::Tristate::Undefined || b == nts::Tristate::Undefined) {
-        return nts::Tristate::Undefined;
-    } else {
+    } else if (a == nts::Tristate::False && b == nts::Tristate::Undefined) {
         return nts::Tristate::False;
+    } else if (a == nts::Tristate::Undefined && b == nts::Tristate::False) {
+        return nts::Tristate::False;
+    } else if (a == nts::Tristate::Undefined && b == nts::Tristate::True) {
+        return nts::Tristate::Undefined;
+    } else if (a == nts::Tristate::True && b == nts::Tristate::Undefined) {
+        return nts::Tristate::Undefined;
+    } else if (a == nts::Tristate::Undefined && b == nts::Tristate::Undefined) {
+        return nts::Tristate::Undefined;
+    } else if (a == nts::Tristate::False && b == nts::Tristate::False) {
+        return nts::Tristate::False;
+    } else if (a == nts::Tristate::True && b == nts::Tristate::False) {
+        return nts::Tristate::False;
+    } else if (a == nts::Tristate::False && b == nts::Tristate::True) {
+        return nts::Tristate::False;
+    } else {
+        return nts::Tristate::Undefined;
     }
 }
 

@@ -15,6 +15,7 @@ class OrComponent : public nts::ACompenent {
         ~OrComponent();
         nts::Tristate compute(std::size_t pin);
         nts::Tristate getValue();
+        nts::Tristate or_gate(nts::Tristate pin1, nts::Tristate pin2);
         protected:
         nts::Tristate _pin = nts::Tristate::Undefined;
 };

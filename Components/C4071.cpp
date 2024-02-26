@@ -20,7 +20,9 @@ nts::Tristate C4071::or_gate(nts::Tristate a, nts::Tristate b)
 {
     if (a == nts::Tristate::True || b == nts::Tristate::True)
         return nts::Tristate::True;
-    return nts::Tristate::False;
+    if (a == nts::Tristate::False && b == nts::Tristate::False)
+        return nts::Tristate::False;
+    return nts::Tristate::Undefined;
 }
 
 nts::Tristate C4071::compute(std::size_t pin)
