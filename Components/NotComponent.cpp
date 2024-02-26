@@ -15,14 +15,19 @@ NotComponent::~NotComponent()
 {
 }
 
+nts::Tristate NotComponent::not_gate(nts::Tristate pin)
+{
+    if (pin == nts::Tristate::True)
+        return nts::Tristate::False;
+    if (pin == nts::Tristate::False)
+        return nts::Tristate::True;
+    return nts::Tristate::Undefined;
+}
+
 nts::Tristate NotComponent::compute(std::size_t pin)
 {
-    if (pin == 3) {
-        if (_links[1].first->compute(_links[1].second) == nts::Tristate::True)
-            return nts::Tristate::False;
-        if (_links[1].first->compute(_links[1].second) == nts::Tristate::False)
-            return nts::Tristate::True;
-        return nts::Tristate::Undefined;
+    if (pin == 2) {
+        return not_gate(_links[1].first->compute(_links[1].second));
     }
     return nts::Tristate::Undefined;
 }

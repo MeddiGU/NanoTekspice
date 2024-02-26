@@ -26,10 +26,26 @@ nts::Tristate C4069::inverter_gate(nts::Tristate pin)
 
 nts::Tristate C4069::compute(std::size_t pin)
 {
-    if (pin == 1 || pin == 3 || pin == 5 || pin == 7 || pin == 9 || pin == 11)
-        return inverter_gate(_links[pin].first->compute(_links[pin].second));
-    if (pin == 2 || pin == 4 || pin == 6 || pin == 8 || pin == 10 || pin == 12)
+    if (pin == 1 || pin == 3 || pin == 5 || pin == 7 || pin == 9 || pin == 11 || pin == 13)
         return _links[pin].first->compute(_links[pin].second);
+    if (pin == 2) {
+        return inverter_gate(_links[1].first->compute(_links[1].second));
+    }
+    if (pin == 4) {
+        return inverter_gate(_links[3].first->compute(_links[3].second));
+    }
+    if (pin == 6) {
+        return inverter_gate(_links[5].first->compute(_links[5].second));
+    }
+    if (pin == 8) {
+        return inverter_gate(_links[9].first->compute(_links[9].second));
+    }
+    if (pin == 10) {
+        return inverter_gate(_links[11].first->compute(_links[11].second));
+    }
+    if (pin == 12) {
+        return inverter_gate(_links[13].first->compute(_links[13].second));
+    }
     return nts::Tristate::Undefined;
 }
 
