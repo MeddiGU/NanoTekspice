@@ -17,24 +17,26 @@ Clock::~Clock()
 
 nts::Tristate Clock::compute(std::size_t pin)
 {
-    if (_pin == nts::Tristate::Undefined)
-        _pin = nts::Tristate::Undefined;
-    else if (_pin == nts::Tristate::True)
-        _pin = nts::Tristate::False;
-    else
-        _pin = nts::Tristate::True;
-    return _pin;
+    if (_pin == nts::Undefined) {
+        _pin = nts::Undefined;
+    } else if (_pin == nts::False) {
+        _pin = nts::True;
+    } else if (_pin == nts::True) {
+        _pin = nts::False;
+    }
+    return (_pin);
 }
 
-nts::Tristate Clock::setValue(int value, int tick)
+nts::Tristate Clock::setValue(int value, char *tick)
 {
-    if (tick%2 == 0) {
-        _pin = nts::Tristate::False;
+    if (tick[0] == 'U') {
+        _pin = nts::Undefined;
+    } else if (tick[0] == '0') {
+        _pin = nts::False;
+    } else if (tick[0] == '1') {
+        _pin = nts::True;
     }
-    if (tick%2 == 1) {
-        _pin = nts::Tristate::True;
-    }
-    return(_pin);
+    return (_pin);
 }
 
 nts::Tristate Clock::getValue()

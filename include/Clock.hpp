@@ -14,7 +14,7 @@ class Clock : public nts::ACompenent {
         Clock();
         ~Clock();
         nts::Tristate compute(std::size_t pin);
-        nts::Tristate setValue(int value, int tick);
+        nts::Tristate setValue(int value, char *tick);
         nts::Tristate getValue();
         protected:
         nts::Tristate _pin = nts::Tristate::Undefined;

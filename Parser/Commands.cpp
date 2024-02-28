@@ -34,7 +34,7 @@ void Parser::display()
     }
 }
 
-int is_exist(char *debut, std::vector<std::string> inputs, std::vector<std::string> clock)
+int is_exist_input(char *debut, std::vector<std::string> inputs, std::vector<std::string> clock)
 {
     unsigned int z = 0;
     while (z < inputs.size()) {
@@ -43,7 +43,12 @@ int is_exist(char *debut, std::vector<std::string> inputs, std::vector<std::stri
         }
         z++;
     }
-    z = 0;
+    return (84);
+}
+
+int is_exist_clock(char *debut, std::vector<std::string> inputs, std::vector<std::string> clock)
+{
+    unsigned int z = 0;
     while (z < clock.size()) {
         if (strcmp(debut, clock[z].c_str()) == 0) {
             return (0);
@@ -51,6 +56,22 @@ int is_exist(char *debut, std::vector<std::string> inputs, std::vector<std::stri
         z++;
     }
     return (84);
+}
+
+int egal_clock(std::string cl, std::vector<std::string> egal)
+{
+    char *debut = NULL;
+    std::string temp;
+    unsigned int z = 0;
+    while (z < egal.size()) {
+        temp = egal[z];
+        debut = strtok(const_cast<char*>(temp.data()), "=");
+        if (debut == cl) {
+            return (69);
+        }
+        z++;
+    }
+    return (0);
 }
 
 void Parser::simulate()
@@ -69,8 +90,11 @@ void Parser::simulate()
             if (fin[0] == 'U') {
                 strcpy(fin, "-1");
             }
-            if (is_exist(debut, inputs, clocks) == 0) {
-                components[debut]->setValue(atoi(fin), tick);
+            if (is_exist_input(debut, inputs, clocks) == 0) {
+                components[debut]->setValue(atoi(fin), fin);
+            }
+            if (is_exist_clock(debut, inputs, clocks) == 0) {
+                components[debut]->setValue(atoi(fin), fin);
             }
         }
         z++;
@@ -86,7 +110,11 @@ void Parser::simulate()
     }
     z = 0;
     while (z < clocks.size()) {
-        components[clocks[z]]->compute(1);
+        if (egal_clock(clocks[z], egal) == 69) {
+            // Don't compute if setValue
+        } else {
+            components[clocks[z]]->compute(1);
+        }
         //std::cout << "input: " << inputs[z] << " value: " << components[inputs[z]]->compute(1) << std::endl;
         z++;
     }
