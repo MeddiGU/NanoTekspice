@@ -68,9 +68,11 @@ void Parser::parsing_error()
         x = 0;
         z++;
     }
-    if (others[0] == "4001" && (inputs.size() != 8 || outputs.size() != 4)) {
-        std::cout << "Crash avoid : 4001 sequenstrial" << std::endl;
-        error = 84;
+    if (others.size() > 0) {
+        if (others[0] == "4001" && (inputs.size() != 8 || outputs.size() != 4)) {
+            std::cout << "Crash avoid : 4001 sequenstrial" << std::endl;
+            error = 84;
+        }
     }
     if (error == 84) {
         exit (84);

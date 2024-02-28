@@ -25,7 +25,19 @@ void nts::ACompenent::setLink(std::size_t pin, nts::IComponent &other, std::size
     other._links[otherPin] = std::make_pair(this, pin);
 }
 
-nts::Tristate nts::ACompenent::setValue(int value, char *tick)
+nts::Tristate nts::ACompenent::setValue(int value)
+{
+    if (value == 1) {
+        _pin = nts::Tristate::True;
+    } else if (value == 0) {
+        _pin = nts::Tristate::False;
+    } else {
+        _pin = nts::Tristate::Undefined;
+    }
+    return(_pin);
+}
+
+nts::Tristate nts::ACompenent::setValue2(int value, char *tick)
 {
     if (value == 1) {
         _pin = nts::Tristate::True;

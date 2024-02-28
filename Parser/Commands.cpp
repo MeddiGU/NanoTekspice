@@ -90,10 +90,10 @@ void Parser::simulate()
                 strcpy(fin, "-1");
             }
             if (is_exist_input(debut, inputs, clocks) == 0) {
-                components[debut]->setValue(atoi(fin), fin);
+                components[debut]->setValue(atoi(fin));
             }
             if (is_exist_clock(debut, inputs, clocks) == 0) {
-                components[debut]->setValue(atoi(fin), fin);
+                components[debut]->setValue2(atoi(fin), fin);
             }
         }
         z++;

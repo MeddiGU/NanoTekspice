@@ -20,7 +20,7 @@ nts::Tristate Input::compute(std::size_t pin)
     return (_pin);
 }
 
-nts::Tristate Input::setValue(int value, int tick)
+nts::Tristate Input::setValue(int value)
 {
     if (value == 1) {
         _pin = nts::Tristate::True;
