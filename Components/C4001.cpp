@@ -26,7 +26,7 @@ nts::Tristate C4001::nor_gate(nts::Tristate a, nts::Tristate b)
 
 nts::Tristate C4001::compute(std::size_t pin)
 {
-     if (pin == 1 || pin == 2 || pin == 5 || pin == 6 || pin == 8 || pin == 9 || pin == 12 || pin == 13)
+    if (pin == 1 || pin == 2 || pin == 5 || pin == 6 || pin == 8 || pin == 9 || pin == 12 || pin == 13)
         return _links[pin].first->compute(_links[pin].second);
     if (pin == 3)
         return nor_gate(_links[1].first->compute(_links[1].second), _links[2].first->compute(_links[2].second));

@@ -13,7 +13,6 @@
 void Parser::display()
 {
     int i = 0;
-
     std::cout << "tick: " << getTick() << std::endl;
     std::cout << "input(s):" << std::endl;
     for (auto &i : alls) {
