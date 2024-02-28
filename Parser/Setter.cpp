@@ -250,8 +250,6 @@ int Parser::vector_into_alls()
 {
     alls.insert(alls.end(), inputs.begin(), inputs.end());
     alls.insert(alls.end(), clocks.begin(), clocks.end());
-    alls.insert(alls.end(), falses.begin(), falses.end());
-    alls.insert(alls.end(), trues.begin(), trues.end());
 
     std::sort(alls.begin(), alls.end());
     return (0);
@@ -260,6 +258,8 @@ int Parser::vector_into_alls()
 int Parser::vector_into_total()
 {
     total.insert(total.end(), alls.begin(), alls.end());
+    total.insert(total.end(), falses.begin(), falses.end());
+    total.insert(total.end(), trues.begin(), trues.end());
     total.insert(total.end(), outputs.begin(), outputs.end());
     total.insert(total.end(), others.begin(), others.end());
 

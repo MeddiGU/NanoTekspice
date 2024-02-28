@@ -69,6 +69,12 @@ int main(int argc, char **argv)
         if (strcmp(nan1.line, "map\n") == 0) {
             nan1.display_map();
         }
+        if (strcmp(nan1.line, "loop\n") == 0) {
+            for (;;) {
+                nan1.display();
+                nan1.simulate();
+            };
+        }
         nan1.vector_into_egal();
     }
     return (0);
