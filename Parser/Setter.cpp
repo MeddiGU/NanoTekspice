@@ -10,6 +10,68 @@
 
 #include "Parser.hpp"
 
+std::string remove_right(std::string str, int place)
+{
+    std::string temp;
+    unsigned int nb_sp = 1;
+    while (str[place + nb_sp] == ' ') {
+        nb_sp++;
+    }
+
+    unsigned int z = 0, compt = 0;
+
+    while (compt < str.size()) {
+        temp += str[compt];
+        if (compt == place) {
+            compt += nb_sp - 1;
+        }
+        z++;
+        compt++;
+    }
+    return (temp);
+}
+
+std::string remove_left(std::string str, int place)
+{
+    std::string temp;
+    unsigned int nb_sp = 1;
+    while (str[place - nb_sp] == ' ') {
+        nb_sp++;
+    }
+
+    unsigned int z = 0, compt = 0;
+
+    while (compt < str.size()) {
+        temp += str[compt];
+        if (compt == place - nb_sp) {
+            compt += nb_sp - 1;
+        }
+        z++;
+        compt++;
+    }
+    return (temp);
+}
+
+std::string removeSpaces_string(std::string str)
+{
+    unsigned int z = 0;
+    while (z < str.size()) {
+        if (str[z] == ':') {
+            str = remove_right(str, z);
+            str = remove_left(str, z);
+            // std::cout << str;
+            // exit (0);
+        }
+        z++;
+    }
+    return str;
+}
+
+int isCara(std::string str)
+{
+    return str.find(':') != std::string::npos;
+}
+
 int Parser::path_into_vector(char *path)
 {
     char buff;
@@ -40,6 +102,23 @@ int Parser::path_into_vector(char *path)
             i++;
         }
     }
+    unsigned int z = 0;
+
+    while (z < vector.size()) {
+        if (strncmp(vector[z].c_str(), ".links:", 7) == 0) {
+            z++;
+            break;
+        }
+        z++;
+    }
+    while (z < vector.size()) {
+        if (isCara(vector[z])) {
+            vector[z] = removeSpaces_string(vector[z]);
+        }
+        z++;
+    }
+    // display_vector(vector);
+    // exit (0);
     return (0);
 }
 

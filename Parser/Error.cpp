@@ -37,6 +37,21 @@ void Parser::parsing_error_before()
     return;
 }
 
+int isNum(std::string str)
+{
+    unsigned int z = 0;
+    while (z < str.size()) {
+        if (str[z] >= 48 && str[z] <= 57) {
+            // Chiffre
+        } else {
+            // Pas chiffre
+            return (84);
+        }
+        z++;
+    }
+    return (0);
+}
+
 void Parser::parsing_error()
 {
     int error = 0;
@@ -46,6 +61,14 @@ void Parser::parsing_error()
     for (const auto& element : links) {
         if (std::find(total.begin(), total.end(), element) == total.end() && i%2 == 0) {
             std::cout << "A components name is unknown '" << element << "'" << std::endl;
+            error = 84;
+        }
+        if (isNum(element) == 84 && i%2 != 0) {
+            std::cout << "Invalid pin: '" << element << "'" << std::endl;
+            error = 84;
+        }
+        if (element.empty()) {
+            std::cout << "Missing Link: No pin" << std::endl;
             error = 84;
         }
         i++;

@@ -60,7 +60,7 @@ int main(int argc, char **argv)
         if (strcmp(nan1.line, "all\n") == 0) {
             nan1.display_vector(nan1.getAll());
         }
-        if (strcmp(nan1.line, "others\n") == 0) {
+        if (strcmp(nan1.line, "other\n") == 0) {
             nan1.display_vector(nan1.getOther());
         }
         if (strcmp(nan1.line, "egal\n") == 0) {
@@ -68,6 +68,9 @@ int main(int argc, char **argv)
         }
         if (strcmp(nan1.line, "map\n") == 0) {
             nan1.display_map();
+        }
+        if (strcmp(nan1.line, "link\n") == 0) {
+            nan1.display_vector(nan1.getLinks());
         }
         if (strcmp(nan1.line, "loop\n") == 0) {
             for (;;) {
