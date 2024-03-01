@@ -29,7 +29,7 @@ nts::Tristate Clock::compute(std::size_t pin)
 
 nts::Tristate Clock::setValue2(int value, char *tick)
 {
-    if (tick[0] == 'U') {
+    if (tick[0] == '-' && tick[1] == '1') {
         _pin = nts::Undefined;
     } else if (tick[0] == '0') {
         _pin = nts::False;
