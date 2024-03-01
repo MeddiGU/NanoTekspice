@@ -58,6 +58,30 @@ void Parser::parsing_error()
     unsigned int z = 0, x = 0, nb = 0;
     char str[99];
     int i = 0;
+
+    unsigned int y = 0, t = 0, compt = 0;
+    while (y < vector.size()) {
+        if (strcmp(vector[y].c_str(), ".links:\n") == 0) {
+            y++;
+            while (y < vector.size()) {
+                while (vector[y][t] != '\0') {
+                    if (vector[y][t] == ':') {
+                        compt++;
+                    }
+                    t++;
+                }
+                if (compt != 2) {
+                    std::cout << "No pin" << std::endl;
+                    error = 84;
+                }
+                compt = 0;
+                t = 0;
+                y++;
+            }
+        }
+        y++;
+    }
+
     for (const auto& element : links) {
         if (std::find(total.begin(), total.end(), element) == total.end() && i%2 == 0) {
             std::cout << "A components name is unknown '" << element << "'" << std::endl;
