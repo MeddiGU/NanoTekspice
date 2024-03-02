@@ -119,6 +119,15 @@ int Parser::parsing_error()
             error = 84;
         }
     }
+
+    if (inputs.size() == 0) {
+        std::cout << ".chipsets is empty" << std::endl;
+        error = 84;
+    }
+    if (links.size() == 0) {
+        std::cout << ".links is empty" << std::endl;
+        error = 84;
+    }
     if (error == 84) {
         exit (84);
     }
