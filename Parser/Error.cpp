@@ -10,13 +10,11 @@
 
 #include "Parser.hpp"
 
-void Parser::parsing_error_before()
+int Parser::parsing_error_before()
 {
     unsigned int z = 0, x = 0;
     int error = 0, error_chipset = 0, error_links = 0;
-    z = 0;
     while (z < vector.size()) {
-        //printf("%s / ", vector[z].c_str());
         if (strcmp(vector[z].c_str(), ".chipsets:\n") == 0) {
             error_chipset = 84;
         }
@@ -34,7 +32,7 @@ void Parser::parsing_error_before()
     if (skip == 84 || error_chipset == 0 || error_links == 0) {
         exit (84);
     }
-    return;
+    return (0);
 }
 
 int isNum(std::string str)
@@ -52,7 +50,7 @@ int isNum(std::string str)
     return (0);
 }
 
-void Parser::parsing_error()
+int Parser::parsing_error()
 {
     int error = 0;
     unsigned int z = 0, x = 0, nb = 0;
@@ -122,7 +120,7 @@ void Parser::parsing_error()
         }
     }
     if (error == 84) {
-        exit (84);
+        return (84);
     }
-    return;
+    return (0);
 }

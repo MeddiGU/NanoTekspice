@@ -2,6 +2,7 @@
 
 int main(int argc, char **argv)
 {
+    int err = 0, err2 = 0;
     if (argc == 1) {
         std::cout << "./Parser (fichier.nts)" << std::endl;
         return (84);
@@ -25,6 +26,7 @@ int main(int argc, char **argv)
     nan1.vector_into_links();
     nan1.create_components();
     nan1.parsing_error();
+
     size_t len = 0;
 
     nan1.set_links();

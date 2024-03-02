@@ -11,6 +11,8 @@
 
 Parser::Parser()
 {
+    line = nullptr;
+    skip = 0;
     tick = 0;
 }
 

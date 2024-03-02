@@ -48,7 +48,7 @@ class Parser {
 
         int path_into_vector(char *path);
         int path_into_skip(char *path);
-        void parsing_error_before();
+        int parsing_error_before();
         int vector_into_inputs();
         int vector_into_outputs();
         int vector_into_clocks();
@@ -59,7 +59,7 @@ class Parser {
         int vector_into_links();
         int vector_into_total();
         int vector_into_egal();
-        void parsing_error();
+        int parsing_error();
         void create_components();
         void set_links();
         void display_vector(std::vector<std::string> vec);

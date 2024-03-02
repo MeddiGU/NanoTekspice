@@ -10,7 +10,7 @@ EXEC   =    nanotekspice
 all:   $(EXEC)
 
 $(EXEC):    $(OBJ)
-	g++ -o $(EXEC) Parser/*.cpp Components/*.cpp src/*.cpp
+	g++ -o $(EXEC) Parser/*.cpp Components/*.cpp src/*.cpp -g3
 
 clean:
 	rm -f $(EXEC)
