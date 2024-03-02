@@ -120,7 +120,7 @@ int Parser::parsing_error()
         }
     }
     if (error == 84) {
-        return (84);
+        exit (84);
     }
     return (0);
 }

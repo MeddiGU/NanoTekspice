@@ -2,7 +2,6 @@
 
 int main(int argc, char **argv)
 {
-    int err = 0, err2 = 0;
     if (argc == 1) {
         std::cout << "./Parser (fichier.nts)" << std::endl;
         return (84);
