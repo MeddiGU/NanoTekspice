@@ -25,6 +25,7 @@ class Parser {
         std::vector<std::string> others;
         std::vector<std::string> alls;
         std::vector<std::string> total;
+        std::vector<std::string> names;
         std::vector<std::string> egal;
         std::map<std::string, std::unique_ptr<nts::IComponent>> components;
         int tick;
@@ -43,6 +44,7 @@ class Parser {
         std::vector<std::string> getOther();
         std::vector<std::string> getAll();
         std::vector<std::string> getTotal();
+        std::vector<std::string> getNames();
         std::vector<std::string> getEgal();
         int getTick();
 
@@ -58,6 +60,7 @@ class Parser {
         int vector_into_alls();
         int vector_into_links();
         int vector_into_total();
+        int vector_into_names();
         int vector_into_egal();
         int parsing_error();
         void create_components();

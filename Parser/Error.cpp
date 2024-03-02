@@ -96,10 +96,10 @@ int Parser::parsing_error()
         i++;
     }
 
-    while (z < total.size()) {
-        while (x < total.size()) {
-            if (total[z] == total[x]) {
-                strcpy(str, total[x].c_str());
+    while (z < names.size()) {
+        while (x < names.size()) {
+            if (names[z] == names[x]) {
+                strcpy(str, names[x].c_str());
                 nb++;
             }
             x++;

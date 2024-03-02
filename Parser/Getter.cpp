@@ -60,6 +60,11 @@ std::vector<std::string> Parser::getTotal()
     return (total);
 }
 
+std::vector<std::string> Parser::getNames()
+{
+    return (total);
+}
+
 std::vector<std::string> Parser::getEgal()
 {
     return (egal);

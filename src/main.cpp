@@ -22,6 +22,7 @@ int main(int argc, char **argv)
     nan1.vector_into_others();
     nan1.vector_into_alls();
     nan1.vector_into_total();
+    nan1.vector_into_names();
     nan1.vector_into_links();
     nan1.create_components();
     nan1.parsing_error();

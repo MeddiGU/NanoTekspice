@@ -346,6 +346,21 @@ int Parser::vector_into_total()
     return (0);
 }
 
+int Parser::vector_into_names()
+{
+    names.insert(names.end(), alls.begin(), alls.end());
+    names.insert(names.end(), falses.begin(), falses.end());
+    names.insert(names.end(), trues.begin(), trues.end());
+    names.insert(names.end(), outputs.begin(), outputs.end());
+    if (others.size() != 0) {
+        for (size_t i = 1; i < others.size(); i += 2) {
+            names.push_back(others[i]);
+        }
+    }
+    std::sort(names.begin(), names.end());
+    return (0);
+}
+
 int Parser::vector_into_egal()
 {
     unsigned int i = 0;

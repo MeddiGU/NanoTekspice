@@ -18,7 +18,6 @@ input in_d
 input in_e
 output out
 4081 and
-4081 and1
 
 .links:
 in_a:1 and:1
