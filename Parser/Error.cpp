@@ -120,7 +120,7 @@ int Parser::parsing_error()
         }
     }
 
-    if (inputs.size() == 0) {
+    if (inputs.size() == 0 && outputs.size() == 0 && trues.size() == 0 && falses.size() == 0 && clocks.size() == 0) {
         std::cout << ".chipsets is empty" << std::endl;
         error = 84;
     }
