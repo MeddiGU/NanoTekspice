@@ -50,3 +50,4 @@ std::unique_ptr<nts::IComponent> MakeComponent::createComponent(const std::strin
         return std::make_unique<NotComponent>();
     return nullptr;
 }
+
